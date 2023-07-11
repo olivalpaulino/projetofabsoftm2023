@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html   xmlns:th="http://www.thymeleaf.org"
+    lang="en">
+
+    <head>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            flex-direction: column;
+            padding-top: 40px; 
+        }
+
+        .nav {
+            position: fixed; 
+            top: 0; 
+            width: 100%;
+            background-color: #529c35fd;
+            color: white;
+            padding: 10px 0;
+            text-align: left; 
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 800px; 
+            width: 700px; 
+            margin: 0 auto;
+            padding: 20px 40px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .btn-primary {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        </style>
+    </head>
+
+    <body>
+        <nav class="nav">
+            <a href="#"><strong> Produtos </strong></a>
+            <a href="/">Home</a>
+            <a href="/usuario">Usuários</a>
+            <a href="/produto">Produtos</a>
+            <a href="/funcionario">Funcionários</a>
+        </nav>
+        <main class= "container">
+            <form th:action="@{/produto/(form)}"
+                method="POST"
+                th:object="${produto}">
+                <input type="hidden" th:field="*{id}">
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input type="text" class="form-control" th:field="*{nome}"> 
+                    <p class="alert alert-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></p>
+                    
+                    <label>Preço</label>
+                    <input type="text" class="form-control" th:field="*{preco}"> 
+                    <p class="alert alert-danger" th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"></p>
+                    
+                    <label>Tipo</label>
+                    <input type="text" class="form-control" th:field="*{tipo}"> 
+                    <p class="alert alert-danger" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></p>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                        Enviar
+                    </button>
+                </div>
+            </form>
+        </main>
+        <div th:include="layout :: footer">(footer)</div>
+    </body>
+
+</html> 

@@ -22,12 +22,10 @@ public class Produto {
     
     @Column(length = 600) 
     @NotNull(message = "Campo preco não pode ser nula")
-    @Pattern(regexp = "^\\d+$", message = "O campo deve ser um número válido")
     private float preco; 
     
     @Column(length = 600)
     @NotNull(message = "Campo tipo não pode ser nula")
-    @Pattern(regexp = "^\\d+$", message = "O campo deve ser um número válido")
     private long tipo;
 
     public long getId() {

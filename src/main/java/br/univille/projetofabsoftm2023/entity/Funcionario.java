@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Funcionario {
@@ -19,6 +20,7 @@ public class Funcionario {
     
     @Column(length = 600)
     @NotBlank(message = "Campo cpf não pode ser em branco")
+    @Pattern(regexp = "\\d+", message = "Campo CPF deve conter apenas números")
     private String cpf; 
     
     @Column(length = 600)
